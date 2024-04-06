@@ -4,6 +4,7 @@ import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import UserDetails from "./pages/UserDetails";
+import AddUser from "./pages/AddUser";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/users" element={<UserPage />} />
           <Route path="/users/:userId" element={<UserDetails />} />
+          <Route path="/add" element={<AddUser />} />
         </Route>
       </Routes>
     </div>

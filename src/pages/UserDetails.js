@@ -22,7 +22,6 @@ export default function UserDetails() {
     dispatch(getUserData(userId));
   }, [dispatch, userId]);
   const user = useSelector(selectCurrentUser);
-  console.log(user);
   return (
     user && (
       <>

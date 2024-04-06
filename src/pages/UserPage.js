@@ -13,7 +13,6 @@ export default function UserPage() {
 
   const isLoading = useSelector(selectLoading);
   const users = useSelector(selectUsers);
-  console.log(users);
 
   return (
     <>
@@ -25,6 +24,7 @@ export default function UserPage() {
           </li>
         ))}
       </ul>
+      <Link to="/add">Add User</Link>
     </>
   );
 }

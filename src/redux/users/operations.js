@@ -38,3 +38,15 @@ export const deleteUser = createAsyncThunk(
     }
   }
 );
+
+export const addUser = createAsyncThunk(
+  "users/addUser",
+  async (user, thunkAPI) => {
+    try {
+      const response = await axios.post("/users", user);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
