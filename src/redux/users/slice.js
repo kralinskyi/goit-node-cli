@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUsers, getUserData, deleteUser, addUser } from "./operations";
+import {
+  fetchUsers,
+  getUserData,
+  deleteUser,
+  addUser,
+  editUser,
+} from "./operations";
 
 const slice = createSlice({
   name: "users",
@@ -54,9 +60,25 @@ const slice = createSlice({
       .addCase(addUser.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        // state.items = [...state.items, payload];
+        state.items = [...state.items, payload];
       })
       .addCase(addUser.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error;
+      })
+      .addCase(editUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(editUser.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        state.currentUser = payload;
+        const editedIndex = state.items.findIndex(
+          (user) => user.id === payload.id
+        );
+        state.items[editedIndex] = payload;
+      })
+      .addCase(editUser.rejected, (state, { error }) => {
         state.loading = false;
         state.error = error;
       });

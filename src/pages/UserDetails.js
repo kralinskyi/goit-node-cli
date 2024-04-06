@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DeleteModal from "../components/DeleteModal/DeleteModal";
+import { Link } from "react-router-dom";
 
 export default function UserDetails() {
   const { userId } = useParams();
@@ -34,9 +35,11 @@ export default function UserDetails() {
             <p>{user.email}</p>
             <p>{user.phone}</p>
             <p>{user.address}</p>
+            <p>{user.group}</p>
             <button onClick={() => setIsOpen(true)}>
               {isDeleting ? "Deleting..." : "Delete"}
             </button>
+            <Link to="edit">Edit User</Link>
           </div>
         )}
         {isOpen && <DeleteModal onClose={closeModal} id={user.id} />}
